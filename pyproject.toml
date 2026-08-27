@@ -1,0 +1,36 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "interpolate_tracers"
+version = "0.1.0"
+description = "Interpolate Eulerian simulation fields (AREPO, PLUTO, or any HDF5-based code) onto Lagrangian tracer particles"
+readme = "README.md"
+license = { text = "MIT" }
+authors = [{ name = "Paola Dominguez Fernandez" }]
+requires-python = ">=3.9"
+dependencies = [
+    "numpy",
+    "scipy",
+    "h5py",
+    "astropy",
+]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Intended Audience :: Science/Research",
+    "Topic :: Scientific/Engineering :: Astronomy",
+    "Topic :: Scientific/Engineering :: Physics",
+]
+
+[project.optional-dependencies]
+arepo = ["yt"]
+dev = ["pytest"]
+
+[project.urls]
+Homepage = "https://github.com/paola-dominguez/interpolate_tracers"
+
+[tool.setuptools.packages.find]
+include = ["interpolate_tracers*"]
