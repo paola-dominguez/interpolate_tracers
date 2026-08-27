@@ -37,7 +37,7 @@ def pdf_statistics(grid_values, tracer_values):
 
 
 def relative_error(interpolated, reference):
-    """Elementwise |interpolated - reference| / |reference|, with a floor to avoid div-by-zero."""
+    """Elementwise abs(interpolated - reference) / abs(reference), with a floor to avoid div-by-zero."""
     interpolated = np.asarray(interpolated, dtype=np.float64)
     reference = np.asarray(reference, dtype=np.float64)
     return np.abs(interpolated - reference) / (np.abs(reference) + 1e-30)

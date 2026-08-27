@@ -12,3 +12,5 @@ dist/
 *.h5
 .venv/
 venv/
+docs/_build/
+docs/_autosummary/

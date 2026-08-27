@@ -28,9 +28,11 @@ classifiers = [
 [project.optional-dependencies]
 arepo = ["yt"]
 dev = ["pytest"]
+docs = ["sphinx", "furo", "myst-parser"]
 
 [project.urls]
 Homepage = "https://github.com/paola-dominguez/interpolate_tracers"
+Documentation = "https://paola-dominguez.github.io/interpolate_tracers/"
 
 [tool.setuptools.packages.find]
 include = ["interpolate_tracers*"]

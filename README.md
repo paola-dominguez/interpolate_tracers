@@ -1,6 +1,7 @@
 # interpolate_tracers
 
 [![Tests](https://github.com/paola-dominguez/interpolate_tracers/actions/workflows/ci.yml/badge.svg)](https://github.com/paola-dominguez/interpolate_tracers/actions/workflows/ci.yml)
+[![Docs](https://github.com/paola-dominguez/interpolate_tracers/actions/workflows/docs.yml/badge.svg)](https://paola-dominguez.github.io/interpolate_tracers/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Uses yt](https://img.shields.io/badge/works%20with-yt-blue)](https://yt-project.org/)
 [![Uses Astropy](https://img.shields.io/badge/uses-astropy-orange)](https://www.astropy.org/)
@@ -13,6 +14,8 @@ cosmic-ray transport code). Built for and validated against **AREPO**
 (moving-mesh) and **PLUTO** (fixed uniform grid), but the core is
 code-agnostic: any simulation that writes HDF5 output can be supported by
 adding one new reader module.
+
+**Full API reference**: https://paola-dominguez.github.io/interpolate_tracers/
 
 ## Why two reading strategies
 
