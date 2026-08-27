@@ -22,6 +22,22 @@ def test_kernel_positive_and_decreasing_near_zero(name):
     assert np.all(np.diff(w) <= 0), f"{name} kernel should be non-increasing with q"
 
 
+def test_w_m6_nonzero_and_continuous_between_2_and_3():
+    # Regression test for a fixed bug: the 2<=q<=3 branch used to be gated
+    # by (q>=3)&(q<=3), which only ever matched q==3 exactly and left the
+    # whole open interval 2<q<3 at 0 instead of the quintic tail (3-q)**5.
+    q_mid = np.array([2.5])
+    w_mid = kern.W_M6(q_mid)
+    assert w_mid[0] == pytest.approx((3 - 2.5)**5)
+    assert w_mid[0] > 0
+
+    # continuous at the q=2 boundary between the 1<=q<=2 and 2<=q<=3 branches
+    q_boundary = np.array([2.0])
+    w_boundary = kern.W_M6(q_boundary)
+    expected = (3 - 2.0)**5 - 6 * (2 - 2.0)**5
+    assert w_boundary[0] == pytest.approx(expected)
+
+
 def test_compute_kernel_averages_weighted_mean():
     # 1 tracer, 2 neighbors, kernel weights [1, 3] -> weighted density mean
     # should be (1*10 + 3*20) / 4 = 17.5

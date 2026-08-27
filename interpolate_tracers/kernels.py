@@ -78,15 +78,15 @@ def W_M6(q): # needs q over 3
     kernel[mask2] = (3 - q[mask2])**5 - 6*(2 - q[mask2])**5
 
     # Condition where 2 <= q <= 3
-    # KNOWN BUG (found while packaging, not fixed to avoid silently changing
-    # past results computed with this kernel): this mask only matches q==3
-    # exactly, so W_M6 returns 0 for the entire open interval 2<q<3 instead
-    # of the quintic tail (3-q)**5 -- a real discontinuity vs. the standard
-    # M6 definition. The intended condition is (q >= 2) & (q <= 3). Not
-    # used by the current validated tracer-file pipeline (which uses W_M4),
-    # but anyone selecting kernel_type="W_M6" should be aware of this before
-    # trusting results near q in (2, 3).
-    mask3 = (q >= 3) & (q <= 3)
+    # FIXED (was `(q >= 3) & (q <= 3)`, which only matched q==3 exactly and
+    # left the whole open interval 2<q<3 at 0 instead of the quintic tail
+    # (3-q)**5 -- a real discontinuity vs. the standard M6 definition, found
+    # while packaging this module. Not used by the current validated
+    # tracer-file pipeline (which uses W_M4), so this changes no past
+    # results from that pipeline; anyone who previously used
+    # kernel_type="W_M6" should be aware their results near q in (2, 3)
+    # will now differ (correctly) from before this fix.
+    mask3 = (q >= 2) & (q <= 3)
     kernel[mask3] =  (3 - q[mask3])**5
 
     return kernel
